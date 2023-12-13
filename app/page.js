@@ -14,7 +14,9 @@ export default function Home() {
   return (
     <div className={silkscreen.className}>
       <main className="flex flex-col items-center justify-center min-h-screen">
-        <Countdown />
+        <div className="mt-60 md:mt-0">
+          <Countdown />
+        </div>
       </main>
     </div>
   )
