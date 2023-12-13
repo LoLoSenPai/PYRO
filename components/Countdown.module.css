@@ -1,0 +1,7 @@
+.canvas {
+    width: 900px;
+    display: block;
+    position: relative;
+    background: transparent;
+    margin: 40px auto;
+  }
