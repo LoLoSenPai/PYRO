@@ -1,116 +1,68 @@
-import React, { useEffect } from 'react';
-import './Countdown.module.css';
+import React, { useState, useEffect } from 'react';
+import { Silkscreen } from 'next/font/google';
 
-const Countdown = () => {
-    useEffect(() => {
-        const countdownTo = "12/31/2023";
-        const rings = {
-            'DAYS': {
-                s: 86400000, // milliseconds in a day,
-                max: 365
-            },
-            'HOURS': {
-                s: 3600000, // milliseconds per hour,
-                max: 24
-            },
-            'MINUTES': {
-                s: 60000, // milliseconds per minute
-                max: 60
-            },
-            'SECONDS': {
-                s: 1000,
-                max: 60
-            },
-            'MICROSEC': {
-                s: 10,
-                max: 100
-            }
-        };
+const silkscreen = Silkscreen({
+    weight: ['400', '700'],
+    subsets: ['latin'],
+    display: 'swap',
+    variable: '--font-silkscreen',
+});
 
-        const rCount = 5;
-        const rSpacing = 10; // px
-        const rSize = 100; // px
-        const rThickness = 2; // px
-        const updateInterval = 11; // ms
+export default function Home() {
+    const calculateTimeLeft = () => {
+        const difference = +new Date("12/19/2023") - +new Date();
+        let timeLeft = {};
 
-        let cvs, ctx, size, actualSize, countdownToTime, time;
-
-        const init = () => {
-            cvs = document.getElementById('countdown-canvas');
-            ctx = cvs.getContext('2d');
-            size = {
-                w: (rSize + rThickness) * rCount + (rSpacing * (rCount - 1)),
-                h: (rSize + rThickness)
+        if (difference > 0) {
+            timeLeft = {
+                days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+                hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+                minutes: Math.floor((difference / 1000 / 60) % 60),
+                seconds: Math.floor((difference / 1000) % 60),
             };
-            cvs.width = size.w;
-            cvs.height = size.h;
-            ctx.textAlign = 'center';
-            actualSize = rSize + rThickness;
-            countdownToTime = new Date(countdownTo).getTime();
-            go();
-        };
+        }
 
-        const go = () => {
-            let idx = 0;
-            time = (new Date().getTime()) - countdownToTime;
+        return timeLeft;
+    };
 
-            for (const rKey in rings) {
-                unit(idx++, rKey, rings[rKey]);
-            }
+    const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
-            setTimeout(go, updateInterval);
-        };
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setTimeLeft(calculateTimeLeft());
+        }, 1000);
 
-        const unit = (idx, label, ring) => {
-            let value = parseFloat(time / ring.s);
-            time -= Math.round(parseInt(value)) * ring.s;
-            value = Math.abs(value);
+        return () => clearTimeout(timer);
+    });
 
-            let x = (rSize * .5 + rThickness * .5);
-            x += +(idx * (rSize + rSpacing + rThickness));
-            let y = rSize * .5;
-            y += rThickness * .5;
-
-            // calculate arc end angle
-            const degrees = 360 - (value / ring.max) * 360.0;
-            const endAngle = degrees * (Math.PI / 180);
-
-            ctx.save();
-
-            ctx.translate(x, y);
-            ctx.clearRect(actualSize * -0.5, actualSize * -0.5, actualSize, actualSize);
-
-            // first circle
-            ctx.strokeStyle = "rgba(128,128,128,0.2)";
-            ctx.beginPath();
-            ctx.arc(0, 0, rSize / 2, 0, 2 * Math.PI, 2);
-            ctx.lineWidth = rThickness;
-            ctx.stroke();
-
-            // second circle
-            ctx.strokeStyle = "rgba(253, 128, 1, 0.9)";
-            ctx.beginPath();
-            ctx.arc(0, 0, rSize / 2, 0, endAngle, 1);
-            ctx.lineWidth = rThickness;
-            ctx.stroke();
-
-            // label
-            ctx.fillStyle = "#ffffff";
-
-            ctx.font = '12px Helvetica';
-            ctx.fillText(label, 0, 23);
-            ctx.fillText(label, 0, 23);
-
-            ctx.font = 'bold 40px Helvetica';
-            ctx.fillText(Math.floor(value), 0, 10);
-
-            ctx.restore();
-        };
-
-        init();
-    }, []);
-
-    return <canvas id="countdown-canvas" style={{ width: '100%', height: '130px' }}></canvas>;
-};
-
-export default Countdown;
+    return (
+        <div className={silkscreen.className}>
+            <div className="grid grid-cols-2 gap-5 text-center sm:grid-cols-4">
+                <div className="flex flex-col p-2 text-xl text-orange-500 bg-white bg-opacity-20 backdrop-blur-sm rounded-box">
+                    <div className="font-mono text-5xl countdown">
+                        <span className={silkscreen.className} style={{ "--value": timeLeft.days ?? 0 }}></span>
+                    </div>
+                    days
+                </div>
+                <div className="flex flex-col p-2 text-xl text-orange-500 bg-white bg-opacity-20 backdrop-blur-sm rounded-box">
+                    <div className="font-mono text-5xl countdown">
+                        <span className={silkscreen.className} style={{ "--value": timeLeft.hours ?? 0 }}></span>
+                    </div>
+                    hours
+                </div>
+                <div className="flex flex-col p-2 text-xl text-orange-500 bg-white bg-opacity-20 backdrop-blur-sm rounded-box">
+                    <div className="font-mono text-5xl countdown">
+                        <span className={silkscreen.className} style={{ "--value": timeLeft.minutes ?? 0 }}></span>
+                    </div>
+                    min
+                </div>
+                <div className="flex flex-col p-2 text-xl text-orange-500 bg-white bg-opacity-20 backdrop-blur-sm rounded-box">
+                    <div className="font-mono text-5xl countdown">
+                        <span className={silkscreen.className} style={{ "--value": timeLeft.seconds ?? 0 }}></span>
+                    </div>
+                    sec
+                </div>
+            </div>
+        </div>
+    );
+}
