@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from '@radix-ui/themes'
 import { Silkscreen } from 'next/font/google'
+import { DiscordLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons';
 
 const silkscreen = Silkscreen({
   weight: ['400', '700'],
@@ -26,14 +27,20 @@ const Navbar = () => {
           </div>
 
           {/* Middle menu */}
-          <div className="flex items-center justify-center flex-1 space-x-4">
-            <Link href='/' variant='ghost'>Home</Link>
-            <Link href='#' variant='ghost' className="link-disabled" onClick={handleClick}>STAKING</Link>
-            <Link href='#' variant='ghost' className="link-disabled" onClick={handleClick}>SOON</Link>
+          <div className="items-center justify-center flex-1 hidden space-x-4 sm:flex">
+            <Link href='/' variant='ghost' size='5'>Home</Link>
+            <Link href='#' variant='ghost' size='5' className="link-disabled" onClick={handleClick}>STAKING</Link>
+            <Link href='#' variant='ghost' size='5' className="link-disabled" onClick={handleClick}>SOON</Link>
           </div>
 
           {/* Empty space on right */}
-          <div className="hidden sm:block w-[150px]">
+          <div className="flex sm:space-x-3 w-[150px]">
+            <Link href='https://discord.gg/pyrooo' variant='ghost' target='_blank'>
+              <DiscordLogoIcon className="w-10 h-10 text-orange-500" />
+            </Link>
+            <Link href='https://twitter.com/PyroInSol' variant='ghost' target='_blank'>
+              <TwitterLogoIcon className="w-10 h-10 text-orange-500" />
+            </Link>
           </div>
         </div>
       </nav>
