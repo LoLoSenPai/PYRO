@@ -22,7 +22,7 @@ const Navbar = () => {
         <div className="container flex items-center justify-between px-4 py-2 mx-auto max-w-[1200px]">
           {/* Logo on the left */}
           <div className="flex items-center">
-            <img src="pyro-logo.jpg" alt="Logo" className="w-auto h-12 rounded-full" />
+            <img src="logo-pyro.png" alt="Logo" className="w-auto h-12 rounded-full" />
           </div>
 
           {/* Middle menu */}

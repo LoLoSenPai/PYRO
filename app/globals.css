@@ -1,9 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import './theme-config.css';
-@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
-
+@import "./theme-config.css";
+@import url("https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap");
 
 @layer base {
   :root {
@@ -89,18 +88,24 @@ html {
 }
 
 body {
-  font-family: 'Silkscreen', sans-serif;
-  background-image: url('/images/wallpaper.png');
+  font-family: "Silkscreen", sans-serif;
+  background-image: url("/images/wallpaper.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .heading-class {
-  font-family: 'Silkscreen', sans-serif;
+  font-family: "Silkscreen", sans-serif;
 }
 
 .link-disabled {
   pointer-events: none;
   cursor: default;
+}
+
+@media (max-width: 767px) {
+  body {
+    background-image: url("/images/mobile-wallpaper.png");
+  }
 }
