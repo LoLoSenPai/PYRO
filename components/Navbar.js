@@ -28,7 +28,8 @@ const Navbar = () => {
           {/* Middle menu */}
           <div className="flex items-center justify-center flex-1 space-x-4">
             <Link href='/' variant='ghost'>Home</Link>
-            <Link href='#' variant='ghost' className="link-disabled" onClick={handleClick}>🔥SOON🔥</Link>
+            <Link href='#' variant='ghost' className="link-disabled" onClick={handleClick}>STAKING</Link>
+            <Link href='#' variant='ghost' className="link-disabled" onClick={handleClick}>SOON</Link>
           </div>
 
           {/* Empty space on right */}
