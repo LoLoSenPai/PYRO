@@ -10,7 +10,7 @@ const silkscreen = Silkscreen({
 
 export default function Home() {
     const calculateTimeLeft = () => {
-        const difference = +new Date("12/20/2023") - +new Date();
+        const difference = +new Date("12/27/2023") - +new Date();
         let timeLeft = {};
 
         if (difference > 0) {
