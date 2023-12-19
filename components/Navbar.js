@@ -23,7 +23,7 @@ const Navbar = () => {
         <div className="container flex items-center justify-between px-4 py-2 mx-auto max-w-[1200px]">
           {/* Logo on the left */}
           <div className="flex items-center">
-            <img src="logo-pyro.png" alt="Logo" className="w-auto h-12 rounded-full" />
+            <img src="logo-pyro.png" alt="Logo" className="w-auto h-16 rounded-full" />
           </div>
 
           {/* Middle menu */}
@@ -34,7 +34,7 @@ const Navbar = () => {
           </div>
 
           {/* Empty space on right */}
-          <div className="flex sm:space-x-3 w-[150px]">
+          <div className="flex space-x-3 md:w-[150px]">
             <Link href='https://discord.gg/pyrooo' variant='ghost' target='_blank'>
               <DiscordLogoIcon className="w-10 h-10 text-orange-500" />
             </Link>
