@@ -57,7 +57,7 @@ export default function Home() {
                     min
                 </div>
                 <div className="flex flex-col p-2 text-xl text-orange-500 bg-white bg-opacity-20 backdrop-blur-sm rounded-box">
-                    <div className="font-mono text-5xl countdown">
+                    <div className="font-mono text-5xl countdown ">
                         <span className={silkscreen.className} style={{ "--value": timeLeft.seconds ?? 0 }}></span>
                     </div>
                     sec
