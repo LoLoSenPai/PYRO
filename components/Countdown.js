@@ -11,7 +11,7 @@ const silkscreen = Silkscreen({
 export default function Home() {
     const calculateTimeLeft = () => {
         // Set the date we're counting down to
-        const targetTimeUTC = "18:00";
+        const targetTimeUTC = "16:00";
     
         // Create a date object for the current time
         const targetDateUTC = new Date(`12/27/2023 ${targetTimeUTC} UTC`);
