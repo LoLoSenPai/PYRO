@@ -8,7 +8,7 @@ const silkscreen = Silkscreen({
     variable: '--font-silkscreen',
 });
 
-export default function Home() {
+export default function Countdown() {
     const calculateTimeLeft = () => {
         // Set the date we're counting down to
         const targetTimeUTC = "16:00";
