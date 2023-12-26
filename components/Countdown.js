@@ -10,9 +10,15 @@ const silkscreen = Silkscreen({
 
 export default function Home() {
     const calculateTimeLeft = () => {
-        const difference = +new Date("12/27/2023") - +new Date();
+        // Set the date we're counting down to
+        const targetTimeUTC = "18:00";
+    
+        // Create a date object for the current time
+        const targetDateUTC = new Date(`12/27/2023 ${targetTimeUTC} UTC`);
+    
+        const difference = targetDateUTC.getTime() - new Date().getTime();
         let timeLeft = {};
-
+    
         if (difference > 0) {
             timeLeft = {
                 days: Math.floor(difference / (1000 * 60 * 60 * 24)),
@@ -21,7 +27,7 @@ export default function Home() {
                 seconds: Math.floor((difference / 1000) % 60),
             };
         }
-
+    
         return timeLeft;
     };
 
