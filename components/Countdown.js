@@ -18,7 +18,7 @@ export default function Countdown() {
 
   useEffect(() => {
     const calculateTimeLeft = () => {
-      const targetDateUTC = new Date(`12/27/2023 16:00 UTC`);
+      const targetDateUTC = new Date(`12/27/2023 17:00 UTC`);
       const difference = targetDateUTC - new Date();
       if (difference > 0) {
         return {
