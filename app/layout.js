@@ -6,8 +6,6 @@ import Navbar from '@/components/Navbar'
 import './theme-config.css'
 import { Silkscreen } from 'next/font/google'
 
-export const fetchCache = 'force-no-store';
-
 const silkscreen = Silkscreen({
   weight: ['400', '700'],
   subsets: ['latin'],
